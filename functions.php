@@ -443,3 +443,96 @@ function get_layout_class () {
 }
 
 endif;
+
+// Logo
+function crc_loginlogo() {
+echo '<style type="text/css">
+#login h1 a {background-image: url(http://cambiogeneracional.org/carnetizate/img/logo.png) !important; -webkit-background-size: 135px; background-size: 135px; height: 135px; width: 135px; }
+</style>';
+}
+add_action('login_head', 'crc_loginlogo');
+
+
+function oculta_opciones_dashboard() {
+  ?>
+  <style>
+    .user-admin-color-wrap,
+    .user-user-login-wrap,
+    .user-first-name-wrap,
+    .user-last-name-wrap,
+    .user-nickname-wrap,
+    .user-display-name-wrap,
+    .user-url-wrap,
+    .user-description-wrap,
+    .user-pass1-wrap,
+    .user-sessions-wrap,
+
+    #your-profile > h2:nth-child(4),
+    #your-profile > h2:nth-child(6),
+    #your-profile > h2:nth-child(8),
+    #your-profile > h2:nth-child(12),
+
+    #wpadminbar #wp-admin-bar-wp-logo>.ab-item,
+    #wp-admin-bar-wp-logo,
+    #adminmenu #menu-dashboard,
+    .user-admin-color-wrap,
+    .user-admin-bar-front-wrap,
+    #screen-meta-links {
+      display: none;
+    }
+  </style>
+  <?php
+}
+
+if ( current_user_can( 'manage_options' ) ) {
+  /* A user with admin privileges */
+} else {
+  /* A user without admin privileges */
+  add_action( 'admin_head', 'oculta_opciones_dashboard' );
+  // echo '';
+  ?>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript">
+    console.log('hola, los mataré a todos');
+    // .user-email-wrap
+    // jQuery('.user-email-wrap').insertAfter('[clear="all"] ~ .form-table tr:nth-child(3)');
+
+    // jQuery(document).ready(function(){
+    //   jQuery('.user-email-wrap').insertAfter('[clear="all"] ~ .form-table tr:nth-child(3)');
+    // });
+
+    jQuery(function($){
+      $('.user-email-wrap').insertAfter('[clear="all"] ~ .form-table tr:nth-child(3)');
+    });
+
+  </script>
+  <?php
+}
+
+
+
+// --------------------/*/*/*/*/*/*/*/*/
+
+// --------------------/*/*/*/*/*/*/*/*/
+
+
+function muestra_registro() {
+  if ( is_user_logged_in() ) { 
+    //Pendiente
+  } else {
+    echo '<div class="contenedor_carnet"><a href="http://cambiogeneracional.org/carnetizate/wp-admin/index.php" class="btn_carnet">Carnetízate aquí!</a></div>';
+  }
+}
+
+// if ( is_user_logged_in() ) { 
+//
+// } else {
+//
+// }
+
+
+// if ( ! is_admin() ) {
+//      echo "You are viewing the theme";
+// } else {
+//      echo "You are viewing the WordPress Administration Panels";
+// }

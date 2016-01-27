@@ -770,6 +770,45 @@ button:hover, .button:hover {
   margin-bottom: 20px;
 }
 
+.no-customize-support #wp-admin-bar-wp-logo,
+.no-customize-support #wpadminbar>#wp-toolbar>#wp-admin-bar-root-default .ab-icon,
+.home .entry-title {
+  display: none;
+}
+
+
+/*verde = #cbdb00*/
+/*azul = #232e5c*/
+
+.site-navigation-inner {
+  background: #232e5c;
+}
+.contenedor_carnet {
+  text-align: center;
+}
+.btn_carnet {
+  background: #cbdb00;
+  padding: 10px;
+  border-radius: 5px;
+  color: #232e5c;
+  display: inline-block;
+}
+.btn_carnet:hover {
+  color: #B12828;
+}
+#colophon {
+  background-color: #232e5c !important;
+}
+
+
+/*.no-customize-support #wp-admin-bar-wp-logo {
+  display: none !important;
+}*/
+
+
+
+
+
 @media (max-width: 768px) {
   .pull-right {
     float: none !important;
