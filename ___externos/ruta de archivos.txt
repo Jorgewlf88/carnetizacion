@@ -1,0 +1,19 @@
+PLUGINS ----->
+  WordPress Social Login
+  Cimy User Extra Fields
+  User Role Editor
+
+
+MODIFICADOS ----->
+  wsl.providers.php
+  /wp-content/plugins/wordpress-social-login/includes/settings
+
+  wsl.users.gateway.php
+  /wp-content/plugins/wordpress-social-login/includes/widgets
+
+  wsl.users.gateway.php
+  /wp-content/plugins/wordpress-social-login/includes/services
+
+  admin-bar.php
+  /wp-includes/
+
