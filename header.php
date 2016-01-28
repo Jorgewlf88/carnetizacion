@@ -1,3 +1,4 @@
+<?php if(!is_user_logged_in()){header("Location: http://cambiogeneracional.org/carnetizate/wp-login.php");} ?>
 <?php
 /**
  * The Header for our theme.
@@ -7,6 +8,8 @@
  * @package sparkling
  */
 ?>
+
+
 <!doctype html>
 <!--[if !IE]>
 <html class="no-js non-ie" <?php language_attributes(); ?>> <![endif]-->

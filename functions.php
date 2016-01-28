@@ -446,9 +446,71 @@ endif;
 
 // Logo
 function crc_loginlogo() {
-echo '<style type="text/css">
-#login h1 a {background-image: url(http://cambiogeneracional.org/carnetizate/img/logo.png) !important; -webkit-background-size: 135px; background-size: 135px; height: 135px; width: 135px; }
-</style>';
+  echo '<style type="text/css">
+    @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+
+    body.login {
+      background: #232e5c;
+    }
+
+    #login h1 a {background-image: url(http://cambiogeneracional.org/carnetizate/img/logo.png) !important; -webkit-background-size: 135px; background-size: 135px; height: 135px; width: 135px; }
+
+    [for="user_login"],
+    [for="user_pass"],
+    [for="rememberme"],
+    #nav a[href*="lostpassword"],
+    #backtoblog,
+    #wp-submit {
+      display: none;
+    }
+
+    .wp-social-login-provider-list a {
+      color: whitesmoke;
+      display: block;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 8px;
+      -webkit-transition: background-color 0.5s ease-out;
+              transition: background-color 0.5s ease-out;
+    }
+    .wp-social-login-provider-list a i {
+      font-size: 25px;
+      line-height: 0;
+      padding: 0 10px 0 0;
+      vertical-align: middle;
+    }
+
+    [data-provider="Facebook"] {
+      background: #3b5998;
+    }
+    [data-provider="Facebook"]:hover {
+      background: #224080;
+    }
+    [data-provider="Google"] {
+      background: #dd4b39;
+    }
+    [data-provider="Google"]:hover {
+      background: #BD3322;
+    }
+    [data-provider="Twitter"] {
+      background: #00aced;
+    }
+    [data-provider="Twitter"]:hover {
+      background: #0492C7;
+    }
+
+  </style>';
+
+  ?>
+  <script type="text/javascript">
+  jQuery(function($){
+    $( '[data-provider="Facebook"]' ).prepend( '<i class="fa fa-facebook"></i>' );
+    $( '[data-provider="Google"]' ).prepend( '<i class="fa fa-google-plus"></i>' );
+    $( '[data-provider="Twitter"]' ).prepend( '<i class="fa fa-twitter"></i>' );
+  });
+  </script>
+  <?php
+
 }
 add_action('login_head', 'crc_loginlogo');
 
@@ -466,6 +528,9 @@ function oculta_opciones_dashboard() {
     .user-description-wrap,
     .user-pass1-wrap,
     .user-sessions-wrap,
+
+    #dashboard-widgets-wrap,
+    #wpfooter,
 
     #your-profile > h2:nth-child(4),
     #your-profile > h2:nth-child(6),
@@ -489,7 +554,6 @@ if ( current_user_can( 'manage_options' ) ) {
 } else {
   /* A user without admin privileges */
   add_action( 'admin_head', 'oculta_opciones_dashboard' );
-  // echo '';
   ?>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script type="text/javascript">
@@ -511,18 +575,34 @@ if ( current_user_can( 'manage_options' ) ) {
 
 
 
-// --------------------/*/*/*/*/*/*/*/*/
 
 // --------------------/*/*/*/*/*/*/*/*/
+// Muestra boton registro
+// function muestra_registro() {
+//   if ( is_user_logged_in() ) { 
+//     //Pendiente
+//   } else {
+//     echo '<div class="contenedor_carnet"><a href="http://cambiogeneracional.org/carnetizate/wp-admin/index.php" class="btn_carnet">Carnetízate aquí!</a></div>';
+//   }
+// }
 
-
-function muestra_registro() {
+// --------------------/*/*/*/*/*/*/*/*/
+// Muestra Carnet personalizado
+function muestra_carnet() {
   if ( is_user_logged_in() ) { 
-    //Pendiente
+    $current_user = wp_get_current_user();
+    echo 'Hola, bienvenid@ ' . $current_user->user_login . '!';
+    echo 'Tu numero de carnet:000' . $user_ID = get_current_user_id();
+    // echo get_avatar($user_id, $size);
+    // echo get_option( 'show_avatars' );
+    // echo get_avatar( get_the_author_meta( 'ID' ), 32 );
   } else {
-    echo '<div class="contenedor_carnet"><a href="http://cambiogeneracional.org/carnetizate/wp-admin/index.php" class="btn_carnet">Carnetízate aquí!</a></div>';
+    // pendiente
   }
 }
+// add_action( 'loop_start', 'muestra_carnet' );
+
+
 
 // if ( is_user_logged_in() ) { 
 //
@@ -531,8 +611,84 @@ function muestra_registro() {
 // }
 
 
+
 // if ( ! is_admin() ) {
 //      echo "You are viewing the theme";
 // } else {
 //      echo "You are viewing the WordPress Administration Panels";
 // }
+
+
+// Shortcodes
+function shortcode_carnet() {
+  if ( is_user_logged_in() ) { 
+    // $current_user = wp_get_current_user();
+    $current_user = wp_get_current_user();
+    ob_start();
+
+    ?><div class="carnet-titulo"><?php
+      echo 'Carnet Provisional';
+    ?></div><?php
+
+    ?><div class="contenedor-carnet"><?php
+
+      ?><div class="carnet-codigo"><?php
+      echo 'Carnet No.: 040' . $user_ID = get_current_user_id();
+      ?></div><?php
+
+      ?><div class="carnet-nombre"><?php
+        echo 'Nombre: ' . $current_user->user_firstname . ' ' . $current_user->user_lastname;
+        // echo '<br />';
+      ?></div><?php
+
+        // ------------------------------------------
+
+        if ($current_user->ID) {
+        $cedula = cimy_uef_sanitize_content(get_cimyFieldValue($current_user->ID, 'CEDULA'));
+        $ciudad = cimy_uef_sanitize_content(get_cimyFieldValue($current_user->ID, 'CIUDAD'));
+        $telefono = cimy_uef_sanitize_content(get_cimyFieldValue($current_user->ID, 'TELEFONO'));
+        ?><div class="carnet-nombre"><?php
+          echo 'Cédula:' . ' ' . $cedula;
+        ?></div><?php
+        // echo '<hr>';
+        ?><div class="carnet-nombre"><?php
+          echo 'Ciudad:' . ' ' . $ciudad;
+        ?></div><?php
+
+        ?><div class="carnet-nombre"><?php
+          echo 'Teléfono:' . ' ' . $telefono;
+        ?></div><?php
+        }
+        // ------------------------------------------
+
+
+
+
+
+      ?><div class="carnet-logo"><?php
+      // echo get_avatar();
+      // echo get_avatar( $user_id, 45 );
+      // echo get_avatar( $user_id );
+      ?><img class="carnet-logo_img" src="http://cambiogeneracional.org/carnetizate/wp-content/uploads/logo.png"></img><?php
+      ?></div><?php
+
+    ?></div><?php
+
+    return ob_get_clean();
+
+  }
+}
+add_shortcode('carnet_personal', 'shortcode_carnet');
+
+
+// [bartag foo="foo-value"]
+function bartag_func( $atts ) {
+    $a = shortcode_atts( array(
+        'foo' => 'something',
+        'bar' => 'something else',
+    ), $atts );
+
+    return "{$a['bar']}";
+}
+add_shortcode( 'bartag', 'bartag_func' );
+

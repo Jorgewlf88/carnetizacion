@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Plantilla Registro
+ * Template Name: Plantilla Pre-Carnetización
  *
  * 
  *
@@ -17,7 +17,7 @@ get_header(); ?>
 
         <?php get_template_part( 'content', 'page' ); ?>
 
-        <?php muestra_registro() ?>
+        <?php //muestra_carnet() ?>
 
         <?php
           // If comments are open or we have at least one comment, load up the comment template

@@ -780,18 +780,21 @@ button:hover, .button:hover {
 /*verde = #cbdb00*/
 /*azul = #232e5c*/
 
-.site-navigation-inner {
-  background: #232e5c;
+.navbar.navbar-default {
+  background: #232e5c !important;
 }
+.contenedor_carnet1,
 .contenedor_carnet {
   text-align: center;
+  width: 100%;
 }
 .btn_carnet {
   background: #cbdb00;
   padding: 10px;
   border-radius: 5px;
   color: #232e5c;
-  display: inline-block;
+  /*display: table;*/
+  margin: auto;
 }
 .btn_carnet:hover {
   color: #B12828;
@@ -800,13 +803,42 @@ button:hover, .button:hover {
   background-color: #232e5c !important;
 }
 
-
-/*.no-customize-support #wp-admin-bar-wp-logo {
-  display: none !important;
-}*/
-
-
-
+.page-id-11 .entry-title {
+  display: none;
+}
+.carnet-titulo {
+  background: #25336D;
+  text-align: center;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: whitesmoke;
+  font-weight: 600;
+}
+.contenedor-carnet {
+  background: #cbdb00;
+  width: 100%;
+  padding: 15px;
+}
+.carnet-codigo {
+  float: right;
+  width: inherit;
+  text-align: right;
+  color: #24326C;
+  font-size: 22px;
+}
+.carnet-nombre {
+  float: right;
+  width: inherit;
+  font-size: 22px;
+  color: #25336D;
+  font-weight: 600;
+}
+.carnet-logo {
+  text-align: right;
+}
+.carnet-logo_img {
+  width: 100px;
+}
 
 
 @media (max-width: 768px) {
